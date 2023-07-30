@@ -35,8 +35,8 @@ async function getUserPhotos(username) {
 
 export default async function Page({ params }) {
     const { username } = params;
-    const userData = await getUserInfo(username);
     const photos = await getUserPhotos(username);
+    const userData = await getUserInfo(username);
 
     return (
         <div>

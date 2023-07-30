@@ -28,6 +28,40 @@
 .grid_view {
    display: grid;
    grid-template-columns: repeat(3, 1fr);
+   gap: 1.5rem 0.5rem;
+   justify-items: center;
+}
+
+.grid_item_image {
+   position: relative;
+   border-radius: 1rem;
+   z-index: 1;
+}
+
+.image_container {}
+
+.likes {
+   display: flex;
+   justify-content: end;
+   align-items: center;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   height: 40px;
+   background-color: rgba(0, 0, 0, 0.4);
+   z-index: 10;
+   width: 100%;
+   padding-inline: 10px;
+}
+
+.btn_like {
+   background: transparent;
+   border: none;
+   color: skyblue;
+}
+
+.height {
+   padding-inline: 5px;
 }
 
 .single_view {

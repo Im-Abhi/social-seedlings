@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import Card from "@/components/Card";
+
 import styles from '../../../styles/ImageGrid.module.css';
 
 export default function UserClient({ photos }) {
@@ -18,15 +20,25 @@ export default function UserClient({ photos }) {
             <div className={`${gridView ? styles.grid_view : styles.single_view}`}>
                 {photos.map((photo, id) =>
                     <div className={''} key={id}>
-                        <Image
-                            className={styles.user_image}
-                            src={photo.urls.regular}
-                            width={200}
-                            height={200}
-                            alt=''
-                        />
-                        <p className=''>{photo.description}</p>
-                        <p className={styles.post_likes}>likes = {photo.likes}</p>
+                        {gridView ?
+                            <div className={styles.grid_item_image}>
+                                <Image
+                                    className={styles.grid_item_image}
+                                    src={photo.urls.regular}
+                                    alt={photo.alt_description}
+                                    width={300}
+                                    height={300}
+                                    objectFit="cover"
+                                    fill={false}
+                                />
+                                <div className={styles.likes}>
+                                    <button className={styles.btn_like} disabled><i className="material-icons">favorite</i>
+                                    </button>
+                                    <div className={styles.height}>{photo.likes}</div>
+                                </div>
+                            </div>
+                            :
+                            <Card post={photo} />}
                     </div>
                 )}
             </div>

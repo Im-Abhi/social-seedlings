@@ -1,0 +1,16 @@
+.header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.heading {
+   font-size: 1.5rem;
+   font-weight: 500;
+   margin: 1rem auto 2rem;
+}
+.loaderDiv {
+   font-size: 2rem;
+   display: flex;
+   justify-content: center;
+   padding: 1.5rem;
+}

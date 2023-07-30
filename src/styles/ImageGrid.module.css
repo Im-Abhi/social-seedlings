@@ -1,0 +1,36 @@
+.container {
+   display: grid;
+   grid-template-rows: 1fr;
+   width: 100%;
+   justify-items: center;
+}
+
+.post {
+   width: 50%;
+   margin-bottom: 2rem;
+}
+
+.user_info {
+   display: flex;
+   column-gap: 10px;
+   align-items: center;
+   margin-bottom: 5px;
+}
+
+.user_image {
+   border-radius: 50%;
+}
+
+.post_likes {
+   color: red;
+}
+
+.grid_view {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+}
+
+.single_view {
+   display: grid;
+   grid-template-columns: 1fr;
+}

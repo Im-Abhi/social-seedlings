@@ -1,95 +1,74 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client"
+
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Container, ImageGrid } from '../components';
+
+import styles from '../styles/Home.module.css';
+
+const BASE_URL = "https://api.unsplash.com/photos?";
+const clientId = "vtgpr3skeVpaKyMaGYacZs_bd12N9fwd1P3w9ep0i4c";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	const [pageData, setPageData] = useState([]);
+	const [isLoading, setLoading] = useState(false);
+	const [page, setPage] = useState(1);
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+	// observer
+	const observer = useRef();
+	const lastElement = useCallback((node) => {
+		if (isLoading) return;
+		if (observer.current) observer.current.disconnect();
+		observer.current = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting) {
+					//get first entrie of target element
+					setPage((prevPage) => prevPage + 1);
+				}
+			},
+			{ threshold: 1 }
+		);
+		// observe current node
+		if (node) observer.current.observe(node);
+	}, [isLoading]);
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+	async function fetchData(page) {
+		try {
+			setLoading(true);
+			const response = await fetch(`${BASE_URL}page=${page}`, {
+				headers: {
+					Authorization: `Client-ID ${clientId}`
+				}
+			});
+			const data = await response.json();
+			setPageData((prevData) => [...prevData, ...data]);
+			setLoading(false);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+	useEffect(() => {
+		fetchData(page);
+	}, [page]);
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+	return (
+		<Container>
+			<div className={styles.header}>
+				<h1 className={styles.heading}>Social Seedlings</h1>
+			</div>
+			{pageData.length > 0 && (
+				<ImageGrid
+					pageData={pageData}
+					lastElementRef={lastElement}
+				/>
+			)}
+			{isLoading && (
+				<div className={styles.loaderDiv}>
+					<i className="bx bx-loader-alt bx-spin"></i>
+				</div>
+			)}
+		</Container>
+	);
 }

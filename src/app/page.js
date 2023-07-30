@@ -55,9 +55,6 @@ export default function Home() {
 
 	return (
 		<Container>
-			<div className={styles.header}>
-				<h1 className={styles.heading}>Social Seedlings</h1>
-			</div>
 			{pageData.length > 0 && (
 				<ImageGrid
 					pageData={pageData}

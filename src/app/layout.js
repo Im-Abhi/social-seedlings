@@ -1,5 +1,7 @@
-import './globals.css'
+import Link from 'next/link'
 import { Inter } from 'next/font/google'
+
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +17,19 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav className='nav'>
+          <h1 className='home'>
+            <Link href='/'>
+              Social Seedlings
+            </Link>
+          </h1>
+          <Link href={'/'}>
+            <div className="home"><i className="material-icons">home</i></div>
+          </Link>
+        </nav>
+        {children}
+      </body>
     </html>
   )
 }

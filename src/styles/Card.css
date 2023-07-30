@@ -1,0 +1,181 @@
+.card {
+    max-width: 300px;
+    margin: 2rem;
+    background-color: #fffff9;
+    border-radius: 1rem;
+    box-shadow: 0 30px 20px -10px rgba(0, 0, 0, .2);
+}
+
+@media screen and (min-width: 768px) {
+    .card {
+        max-width: 500px;
+    }
+}
+
+.card button {
+    border: none;
+    cursor: pointer;
+}
+
+.card button:focus {
+    outline: 0;
+}
+
+.card .top {
+    position: relative;
+    width: 100%;
+    height: 360px !important;
+    color: #fffff9;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card .top::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, .7));
+}
+
+.card .top .social-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.5rem;
+}
+
+.card .top .social-buttons button {
+    background-color: transparent;
+}
+
+.card .top .social-buttons button i {
+    font-size: 1rem;
+    color: #fffff9;
+}
+
+.card .top .social-buttons button:hover i {
+    color: #ffc629;
+}
+
+.card .top button.like {
+    z-index: 1;
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background-color: transparent;
+}
+
+.card .top button.like i {
+    font-size: 1.3rem;
+    color: #fffff9;
+}
+
+.card .top .text {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 1;
+}
+
+.card .top .text .name-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .25rem;
+}
+
+.card .top .text .name-wrapper i {
+    font-size: 1rem;
+    margin-left: .5rem;
+    color: #009abf;
+}
+
+.card .top .text .name-wrapper .name {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.card .top .text .title {
+    font-size: .8rem;
+}
+
+.card .bottom {
+    padding: 1rem 1.5rem 1.5rem;
+    background-color: #161616;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.card .bottom .desc {
+    color: white;
+}
+
+.card .bottom .buttons {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.card .bottom .buttons button {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: .5rem;
+    color: #fdda64;
+    background-color: transparent;
+    font-size: .7rem;
+    border: 1px solid #fdda64;
+    border-radius: 1em;
+    padding-inline: 5px 10px;
+}
+
+.card .bottom .buttons button i {
+    font-size: 1rem;
+    padding: 2px 5px;
+}
+
+.card .bottom .buttons button:hover {
+    filter: brightness(110%);
+}
+
+.hexagon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 23px;
+    margin: 11px 0;
+    box-shadow: 0 15px 15px -2px rgba(0, 0, 0, .2);
+    background-color: #ffc629;
+}
+
+.hexagon::before,
+.hexagon::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+
+.hexagon::before {
+    bottom: 100%;
+    border-bottom: 11px solid #ffc629;
+}
+
+.hexagon::after {
+    top: 100%;
+    border-top: 11px solid #ffc629;
+}
+
+.hexagon:hover {
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, .2);
+    transform: translateY(-10px) scale(1.1);
+    filter: brightness(110%);
+}
+
+.card * {
+    transition: all 200ms cubic-bezier(.68, -.55, .265, 1.55);
+}

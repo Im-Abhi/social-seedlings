@@ -1,7 +1,9 @@
 import Image from "next/image";
 
-import styles from '../../../styles/ImageGrid.module.css';
 import UserClient from "./userClient";
+
+import styles from '../../../styles/ImageGrid.module.css';
+import Link from "next/link";
 
 const BASE_URL = "https://api.unsplash.com/users/";
 const clientId = "vtgpr3skeVpaKyMaGYacZs_bd12N9fwd1P3w9ep0i4c";
@@ -18,7 +20,6 @@ async function getUserInfo(username) {
     const data = await res.json();
     return data;
 }
-
 
 async function getUserPhotos(username) {
     const res = await fetch(`${BASE_URL}${username}/photos`, {
@@ -40,21 +41,38 @@ export default async function Page({ params }) {
 
     return (
         <div>
-            <div className="">
-                <h1>User Profile Section</h1>
+            <div className={styles.hero}>
                 <Image
                     className={styles.user_image}
                     src={userData.profile_image.small}
-                    width={50}
-                    height={50}
+                    width={75}
+                    height={75}
                     alt=''
                 />
-                <h6 className={''}>{userData.name}</h6>
-                <p className={''}>{userData.bio}</p>
-                <p className={''}>{userData.location}</p>
-                <UserClient photos={photos}>
-                </UserClient>
             </div>
+            <div className={styles.user_info}>
+                <h3 className={''}>{userData.name}</h3>
+                <p className={styles.user_bio}>{userData.bio}</p>
+                {userData.location &&
+                    <p className={styles.user_loc}>
+                        <span className="material-icons">
+                            location_on
+                        </span>
+                        {userData.location}
+                    </p>
+                }
+                {userData.portfolio_url &&
+                    <p className={styles.user_link}>
+                        <span className="material-icons">
+                            link
+                        </span>
+                        <Link href={userData.portfolio_url}>
+                            {userData.portfolio_url}
+                        </Link>
+                    </p>
+                }
+            </div>
+            <UserClient photos={photos} />
         </div>
     )
 }

@@ -6,39 +6,36 @@
 }
 
 .post {
-   width: 50%;
+   width: 60%;
    margin-bottom: 2rem;
-}
-
-.user_info {
-   display: flex;
-   column-gap: 10px;
-   align-items: center;
-   margin-bottom: 5px;
-}
-
-.user_image {
-   border-radius: 50%;
-}
-
-.post_likes {
-   color: red;
 }
 
 .grid_view {
    display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   gap: 1.5rem 0.5rem;
+   grid-template-columns: 1fr 1fr 1fr;
    justify-items: center;
+   margin-inline: 0.5rem;
+   gap: 0.5rem;
 }
 
 .grid_item_image {
+   width: 100%;
+   height: 300px;
    position: relative;
-   border-radius: 1rem;
+   border-radius: 5px;
    z-index: 1;
 }
 
-.image_container {}
+@media screen and (max-width: 768px) {
+   .post {
+      width: 85%;
+   }
+}
+
+.single_view {
+   display: grid;
+   grid-template-columns: 1fr;
+}
 
 .likes {
    display: flex;
@@ -48,9 +45,11 @@
    bottom: 0;
    right: 0;
    height: 40px;
-   background-color: rgba(0, 0, 0, 0.4);
+   background-color: rgba(0, 0, 0, 0.6);
    z-index: 10;
-   width: 100%;
+   width: max-content;
+   border-top-left-radius: 1rem;
+   border-bottom-left-radius: 1rem;
    padding-inline: 10px;
 }
 
@@ -64,7 +63,64 @@
    padding-inline: 5px;
 }
 
-.single_view {
-   display: grid;
-   grid-template-columns: 1fr;
+.hero {
+   height: 15vh;
+   background-color: skyblue;
+   position: relative;
+}
+
+.user_image {
+   border-radius: 50%;
+   position: absolute;
+   bottom: 0;
+   transform: translate(-50%, 50%);
+   left: 50%;
+}
+
+.user_info {
+   padding-inline: 2rem;
+   text-align: center;
+   margin-top: 3rem;
+}
+
+.user_bio {
+   margin-block: 0.5rem;
+}
+
+.user_loc {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   justify-content: center;
+}
+
+.user_link {
+   margin-block: 4px;
+   display: flex;
+   align-items: center;
+   width: 100%;
+   justify-content: center;
+}
+
+
+.user_link:hover {
+   color: skyblue;
+}
+
+.change_view {
+   display: flex;
+   justify-content: space-evenly;
+   padding: 1rem;
+   margin-block: 0.5rem;
+   border-block: 1px solid white;
+}
+
+.change_view button {
+   background: transparent;
+   border: none;
+}
+
+.change_view button:hover {
+   cursor: pointer;
+   color: skyblue;
 }

@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Container, ImageGrid } from '../components';
 
-import styles from '../styles/Home.module.css';
+import Loading from './loading';
+import { Container, ImageGrid } from '../components';
 
 const BASE_URL = "https://api.unsplash.com/photos?";
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
@@ -55,17 +55,14 @@ export default function Home() {
 
 	return (
 		<Container>
-			{pageData.length > 0 && (
-				<ImageGrid
-					pageData={pageData}
-					lastElementRef={lastElement}
-				/>
-			)}
-			{isLoading && (
-				<div className={styles.loaderDiv}>
-					<i className="bx bx-loader-alt bx-spin"></i>
-				</div>
-			)}
+			{isLoading ? <Loading /> :
+				pageData.length > 0 && (
+					<ImageGrid
+						pageData={pageData}
+						lastElementRef={lastElement}
+					/>
+				)
+			}
 		</Container>
 	);
 }

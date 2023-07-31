@@ -18,8 +18,8 @@
 }
 
 .grid_item_image {
-   width: calc((100vw - 2rem) / 3);
-   height: calc((100vw - 2rem) / 3);
+   width: calc((100vw - 3rem) / 3);
+   height: calc((100vw - 3rem) / 3);
    position: relative;
    border-radius: 5px;
    z-index: 1;

@@ -19,7 +19,7 @@ At once 10 posts are shown and have an infinite scroll.
 
 You can view the posts( random photos by different users), number of likes, and the date created.
 
-We can also visit the user profile by clicking on the username in any post.
+**We can also visit the user profile by clicking on the username in any post.**
 Where you can see the user photos either in grid layout or in the list layout(same as that of home page - feed).
 
 ***

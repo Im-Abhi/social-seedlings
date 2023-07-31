@@ -32,14 +32,13 @@ export default function UserClient({ photos }) {
                             <div className={styles.grid_item_image}>
                                 <Image
                                     className={styles.grid_item_image}
-                                    src={photo.urls.regular}
+                                    src={photo.urls.raw}
+                                    placeholder="blur"
+                                    blurDataURL={photo.blur_hash}
                                     alt={photo.alt_description}
                                     width={110}
                                     height={110}
-                                    objectFit="contain"
-                                    blurDataURL={photo.blur_hash}
-                                    placeholder="blur"
-                                    loading="lazy"
+                                    quality={100}
                                 />
                                 <div className={styles.likes}>
                                     <button className={styles.btn_like} disabled><i className="material-icons">favorite</i>

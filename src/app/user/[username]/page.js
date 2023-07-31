@@ -1,4 +1,6 @@
+import { cache } from 'react';
 import Image from "next/image";
+import 'server-only'
 
 import UserClient from "./userClient";
 
@@ -8,7 +10,11 @@ import Link from "next/link";
 const BASE_URL = "https://api.unsplash.com/users/";
 const clientId = "vtgpr3skeVpaKyMaGYacZs_bd12N9fwd1P3w9ep0i4c";
 
-async function getUserInfo(username) {
+export const preload = (username) => {
+    return getUserInfo(username);
+}
+
+export const getUserInfo = cache(async (username) => {
     const res = await fetch(`${BASE_URL}${username}`, {
         headers: {
             Authorization: `Client-ID ${clientId}`
@@ -19,7 +25,7 @@ async function getUserInfo(username) {
     }
     const data = await res.json();
     return data;
-}
+});
 
 async function getUserPhotos(username) {
     const res = await fetch(`${BASE_URL}${username}/photos`, {
@@ -37,7 +43,7 @@ async function getUserPhotos(username) {
 export default async function Page({ params }) {
     const { username } = params;
     const photos = await getUserPhotos(username);
-    const userData = await getUserInfo(username);
+    const userData = await preload(username);
 
     return (
         <div>

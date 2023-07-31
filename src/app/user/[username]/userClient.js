@@ -15,12 +15,12 @@ export default function UserClient({ photos }) {
         <div>
             <div className={styles.change_view}>
                 <button onClick={() => setGridView(true)}>
-                    <span class="material-icons">
+                    <span className="material-icons">
                         grid_on
                     </span>
                 </button>
                 <button onClick={() => setGridView(false)}>
-                    <span class="material-icons">
+                    <span className="material-icons">
                         view_list
                     </span>
                 </button>

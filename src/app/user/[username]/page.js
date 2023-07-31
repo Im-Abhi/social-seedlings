@@ -8,7 +8,7 @@ import styles from '../../../styles/ImageGrid.module.css';
 import Link from "next/link";
 
 const BASE_URL = "https://api.unsplash.com/users/";
-const clientId = process.env.CLIENT_ID;
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 
 export const preload = (username) => {
     return getUserInfo(username);

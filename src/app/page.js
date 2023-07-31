@@ -6,7 +6,7 @@ import { Container, ImageGrid } from '../components';
 import styles from '../styles/Home.module.css';
 
 const BASE_URL = "https://api.unsplash.com/photos?";
-const clientId = process.env.CLIENT_ID;
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 
 export default function Home() {
 	const [pageData, setPageData] = useState([]);
